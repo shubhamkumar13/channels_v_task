@@ -1,0 +1,223 @@
+MATRIX-MULTIPLICATION-MULTICORE
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore.exe 1 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m9.899s
+user	0m9.883s
+sys	0m0.016s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore.exe 2 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m5.078s
+user	0m10.005s
+sys	0m0.040s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore.exe 4 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m2.573s
+user	0m9.918s
+sys	0m0.028s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore.exe 8 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m3.554s
+user	0m13.213s
+sys	0m0.048s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore.exe 12 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m3.710s
+user	0m14.321s
+sys	0m0.032s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore.exe 16 1024 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m4.544s
+user	0m17.712s
+sys	0m0.044s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore.exe 20 1024 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m4.339s
+user	0m16.873s
+sys	0m0.032s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore.exe 24 1024 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m4.972s
+user	0m19.381s
+sys	0m0.064s
+
+MATRIX-MULTIPLICATION-TILING-MULTICORE
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_tiling_multicore.exe 1 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m8.995s
+user	0m8.991s
+sys	0m0.004s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_tiling_multicore.exe 2 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m4.588s
+user	0m9.010s
+sys	0m0.056s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_tiling_multicore.exe 4 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m2.375s
+user	0m9.087s
+sys	0m0.056s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_tiling_multicore.exe 8 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m3.235s
+user	0m12.540s
+sys	0m0.020s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_tiling_multicore.exe 16 1024 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m3.651s
+user	0m14.039s
+sys	0m0.036s
+
+MATRIX-MULTIPLICATION-MULTICORE-TASK
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore_task.exe 1 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m10.037s
+user	0m10.032s
+sys	0m0.004s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore_task.exe 2 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m5.184s
+user	0m10.182s
+sys	0m0.052s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore_task.exe 4 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m2.689s
+user	0m10.340s
+sys	0m0.032s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore_task.exe 8 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m4.419s
+user	0m17.191s
+sys	0m0.032s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore_task.exe 12 1024 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m5.457s
+user	0m21.336s
+sys	0m0.048s
+
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore_task.exe 16 1024 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m8.844s
+user	0m34.799s
+sys	0m0.044s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore_task.exe 20 1024 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m9.018s
+user	0m35.583s
+sys	0m0.068s
+atul@godel:~/shubham/channels_v_task$ time _build/default/matrix_multiplication_multicore_task.exe 24 1024 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m7.026s
+user	0m27.569s
+sys	0m0.032s
+
+MERGESORT-MULTICORE
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore.exe 1 100_000 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m0.132s
+user	0m0.152s
+sys	0m0.035s
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore.exe 2 100_000 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m0.088s
+user	0m0.105s
+sys	0m0.062s
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore.exe 4 100_000 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m0.470s
+user	0m1.713s
+sys	0m0.020s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore.exe 8 100_000 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m0.580s
+user	0m2.089s
+sys	0m0.040s
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore.exe 12 100_000 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m0.846s
+user	0m3.090s
+sys	0m0.032s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore.exe 16 100_000 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m0.869s
+user	0m3.106s
+sys	0m0.032s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore.exe 20 100_000 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m0.659s
+user	0m2.267s
+sys	0m0.028s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore.exe 24 100_000 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m0.603s
+user	0m1.984s
+sys	0m0.032s
+
+MERGESORT-MULTICORE-TASK
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore_task.exe 1 100_000 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m0.051s
+user	0m0.046s
+sys	0m0.005s
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore_task.exe 2 100_000 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m0.036s
+user	0m0.053s
+sys	0m0.008s
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore_task.exe 4 100_000 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m0.026s
+user	0m0.064s
+sys	0m0.005s
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore_task.exe 8 100_000 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m0.633s
+user	0m2.468s
+sys	0m0.004s
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore_task.exe 12 100_000 taskset --cpu-list 2-13 chrt -r 1
+
+real	0m1.001s
+user	0m3.909s
+sys	0m0.008s
+
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore_task.exe 16 100_000 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m1.327s
+user	0m5.205s
+sys	0m0.004s
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore_task.exe 20 100_000 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m2.219s
+user	0m8.692s
+sys	0m0.008s
+atul@godel:~/shubham/channels_v_task$ time _build/default/mergesort_multicore_task.exe 24 100_000 taskset --cpu-list 2-13,16-27 chrt -r 1
+
+real	0m2.790s
+user	0m11.005s
+sys	0m0.036s
+

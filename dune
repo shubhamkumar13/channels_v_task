@@ -18,3 +18,6 @@
 	(name mergesort_multicore_task)
 	(modules mergesort_multicore_task)
 	(libraries domainslib))
+(executable
+	(name my_run)
+	(modules my_run))
