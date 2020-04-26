@@ -1,0 +1,20 @@
+(executable
+	(name matrix_multiplication_multicore)
+	(modules matrix_multiplication_multicore)
+	(libraries domainslib))
+(executable
+	(name matrix_multiplication_tiling_multicore)
+	(modules matrix_multiplication_tiling_multicore)
+	(libraries domainslib))
+(executable
+	(name matrix_multiplication_multicore_task)
+	(modules matrix_multiplication_multicore_task)
+	(libraries domainslib))
+(executable
+	(name mergesort_multicore)
+	(modules mergesort_multicore)
+	(libraries domainslib))
+(executable
+	(name mergesort_multicore_task)
+	(modules mergesort_multicore_task)
+	(libraries domainslib))

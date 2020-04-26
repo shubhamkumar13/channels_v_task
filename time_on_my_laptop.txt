@@ -1,0 +1,94 @@
+---------------------------------MATRIX_MULTIPLICATION_MULTICORE---------------------------------------
+
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/matrix_multiplication_multicore.exe 1
+
+real	0m19.381s
+user	0m19.359s
+sys	0m0.020s
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/matrix_multiplication_multicore.exe 2
+
+real	0m9.798s
+user	0m19.422s
+sys	0m0.004s
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/matrix_multiplication_multicore.exe 4
+
+real	0m5.596s
+user	0m21.378s
+sys	0m0.032s
+
+
+-----------------------------MATRIX_MULTIPLICATION_TILING_MULTICORE------------------------------------
+
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/matrix_multiplication_tiling_multicore.exe 1
+
+real	0m11.404s
+user	0m11.333s
+sys	0m0.016s
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/matrix_multiplication_tiling_multicore.exe 2
+
+real	0m5.919s
+user	0m11.585s
+sys	0m0.053s
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/matrix_multiplication_tiling_multicore.exe 4
+
+real	0m3.465s
+user	0m12.512s
+sys	0m0.048s
+
+
+-------------------------------MATRIX_MULTIPLICATION_MULTICORE_TASK------------------------------------
+
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/matrix_multiplication_multicore_task.exe 1
+
+real	0m21.453s
+user	0m21.436s
+sys	0m0.016s
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/matrix_multiplication_multicore_task.exe 2
+
+real	0m10.755s
+user	0m21.237s
+sys	0m0.024s
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/matrix_multiplication_multicore_task.exe 4
+
+real	0m5.493s
+user	0m21.172s
+sys	0m0.056s
+
+---------------------------------------MERGESORT_MULTICORE---------------------------------------------
+
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/mergesort_multicore.exe 1 100_000
+
+real	0m0.223s
+user	0m0.271s
+sys	0m0.029s
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/mergesort_multicore.exe 2 100_000
+
+real	0m0.153s
+user	0m0.255s
+sys	0m0.047s
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/mergesort_multicore.exe 4 100_000
+
+real	0m0.152s
+user	0m0.321s
+sys	0m0.052s
+
+--------------------------------------MERGESORT_MULTICORE_TASK-----------------------------------------
+
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/mergesort_multicore_task.exe 1 100_000
+
+real	0m0.091s
+user	0m0.082s
+sys	0m0.008s
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/mergesort_multicore_task.exe 2 100_000
+
+real	0m0.066s
+user	0m0.094s
+sys	0m0.008s
+shubham@pop-os:~/channels_v_task/channels_v_task(master)$ time _build/default/mergesort_multicore_task.exe 4 100_000
+
+real	0m0.056s
+user	0m0.113s
+sys	0m0.016s
+
+-------------------------------------------------------------------------------------------------------
+
