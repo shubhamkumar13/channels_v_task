@@ -33,7 +33,7 @@ let next_cell g x y =
   | 0, 3                             -> 1  (* get birth *)
   | _ (* 0, (0|1|2|4|5|6|7|8) *)     -> 0  (* barren *)
 
-let print g =
+(* let print g =
   for x = 0 to board_size - 1 do
     for y = 0 to board_size - 1 do
       if g.(x).(y) = 0
@@ -42,7 +42,7 @@ let print g =
     done;
     print_endline (Bytes.unsafe_to_string buf)
   done;
-  print_endline ""
+  print_endline "" *)
 
 let next pool =
   let g = !rg in
@@ -63,8 +63,8 @@ let rec repeat pool n =
 
 let ()=
   let pool = T.setup_pool ~num_domains:(num_domains - 1) in
-  print !rg;
+  (* print !rg; *)
   repeat pool n_times;
-  print !rg;
+  (* print !rg; *)
   T.teardown_pool pool
 

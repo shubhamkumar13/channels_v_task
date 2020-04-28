@@ -59,7 +59,7 @@ let next () =
   rg := new_g;
   rg' := g
 
-let print g =
+(* let print g =
   for x = 0 to board_size - 1 do
     for y = 0 to board_size - 1 do
       if g.(x).(y) = 0
@@ -69,7 +69,7 @@ let print g =
     print_endline (Bytes.unsafe_to_string buf)
   done;
   print_endline ""
-
+ *)
 let rec repeat n =
   match n with
   | 0-> ()
@@ -82,8 +82,8 @@ let rec worker c () =
 
 let ()=
   let domains = Array.map (fun c -> Domain.spawn (worker c)) channels in
-  print !rg;
+  (* print !rg; *)
   repeat n_times;
-  print !rg;
+  (* print !rg; *)
   Array.iter (fun c -> C.send c.req Quit) channels;
   Array.iter Domain.join domains
