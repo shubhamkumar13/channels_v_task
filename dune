@@ -26,3 +26,11 @@
 	(name spectralnorm2_multicore_task)
 	(modules spectralnorm2_multicore_task)
 	(libraries domainslib))
+(executable
+	(name game_of_life_multicore)
+	(modules game_of_life_multicore)
+	(libraries domainslib))
+(executable
+	(name game_of_life_multicore_task)
+	(modules game_of_life_multicore_task)
+	(libraries domainslib))
