@@ -19,5 +19,10 @@
 	(modules mergesort_multicore_task)
 	(libraries domainslib))
 (executable
-	(name my_run)
-	(modules my_run))
+	(name spectralnorm2_multicore)
+	(modules spectralnorm2_multicore)
+	(libraries domainslib))
+(executable
+	(name spectralnorm2_multicore_task)
+	(modules spectralnorm2_multicore_task)
+	(libraries domainslib))

@@ -45,6 +45,4 @@ let () =
   for i=0 to n-1 do
     vv := !vv +. v.(i) *. v.(i);
     vBv := !vBv +. u.(i) *. v.(i)
-  done;
-  Printf.printf "%0.9f\n" (sqrt(!vBv /. !vv))
-
+  done

@@ -78,5 +78,4 @@ let () =
     vBv := !vBv +. (u.(i) *. v.(i))
   done ;
   Array.iter (fun c -> C.send c.req Quit) channels ;
-  Array.iter Domain.join domains ;
-  Printf.printf "%0.9f\n" (sqrt (!vBv /. !vv))
+  Array.iter Domain.join domains
