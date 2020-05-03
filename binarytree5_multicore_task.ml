@@ -65,12 +65,10 @@ let loop_depths d =
     	this made it possible for me to use parallel_for 
       ////////////////////////////////////////////////
       *)
-    let start_index index = (index * niter) / num_domains in
-    let end_index index = (((index + 1) * niter) / num_domains) - 1 in
     let calculate index =
     	let c = ref 0 in
-    	let st = start_index index in
-    	let en = end_index index in
+    	let st = (index * niter) / num_domains in
+    	let en = (((index + 1) * niter) / num_domains) - 1 in
     	for _ = st to en do
     		c := !c + check (make d)
     	done;
