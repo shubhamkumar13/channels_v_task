@@ -30,8 +30,9 @@ let stretch_depth = max_depth + 1
 
 let () =
   (* Gc.set { (Gc.get()) with Gc.minor_heap_size = 1024 * 1024; max_overhead = -1; }; *)
-  let c = check (make stretch_depth) in
-  Printf.printf "stretch tree of depth %i\t check: %i\n" stretch_depth c
+  let _ = check (make stretch_depth) in
+  ()
+  (* Printf.printf "stretch tree of depth %i\t check: %i\n" stretch_depth c *)
 
 let long_lived_tree = make max_depth
 
@@ -61,12 +62,12 @@ let loop_depths d =
     Array.iteri (fun x c -> C.send c.req (Do (job x))) channels ;
     job (num_domains - 1) ();
     Array.iter (fun c -> C.recv c.resp) channels;
-    let sum = Array.fold_left (+) 0 values in
-
+    let _ = Array.fold_left (+) 0 values in
+    ()
     (* let domains = worker d (num_domains) 1 (niter/num_domains) in
     let sum = List.fold_left (+) 0 (List.map Domain.join domains) in *)
     (* let sum = calculate d 1 niter in *)
-      Printf.printf "%i\t trees of depth %i\t check: %i\n" niter d sum ;
+      (* Printf.printf "%i\t trees of depth %i\t check: %i\n" niter d sum ; *)
       (* Printf.printf "i == %d\n" i; *)
   done
 
@@ -74,7 +75,8 @@ let () =
   let domains = Array.map (fun c -> Domain.spawn (worker c)) channels in
   flush stdout;
   loop_depths min_depth;
-  Printf.printf "long lived tree of depth %i\t check: %i\n"
-    max_depth (check long_lived_tree);
+  (* Printf.printf "long lived tree of depth %i\t check: %i\n"  *)
+  let _ = max_depth in
+  let _ = (check long_lived_tree) in 
     Array.iter (fun c -> C.send c.req Quit) channels ;
     Array.iter Domain.join domains

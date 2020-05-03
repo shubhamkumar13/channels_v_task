@@ -24,8 +24,9 @@ let stretch_depth = max_depth + 1
 
 let () =
   (* Gc.set { (Gc.get()) with Gc.minor_heap_size = 1024 * 1024; max_overhead = -1; }; *)
-  let c = check (make stretch_depth) in
-  Printf.printf "stretch tree of depth %i\t check: %i\n" stretch_depth c
+  let _ = check (make stretch_depth) in
+  ()
+  (* Printf.printf "stretch tree of depth %i\t check: %i\n" stretch_depth c *)
 
 let long_lived_tree = make max_depth
 
@@ -76,12 +77,13 @@ let loop_depths d =
     	values.(index) <- !c in
     T.parallel_for pool ~chunk_size:(num_domains) ~start:0 ~finish:(num_domains - 1) ~body:(fun index -> calculate index);
 
-    let sum = Array.fold_left (+) 0 values in
-    Printf.printf "%i\t trees of depth %i\t check: %i\n" niter d sum
+    let _ = Array.fold_left (+) 0 values in
+    ()
+    (* Printf.printf "%i\t trees of depth %i\t check: %i\n" niter d sum *)
   done
 
 let () =
   loop_depths min_depth;
-  Printf.printf "long lived tree of depth %i\t check: %i\n"
-    max_depth (check long_lived_tree);
-    T.teardown_pool pool
+  let _ = max_depth in
+  let _ = (check long_lived_tree) in
+  T.teardown_pool pool
