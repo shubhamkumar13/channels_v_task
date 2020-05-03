@@ -31,6 +31,7 @@ let () =
 let long_lived_tree = make max_depth
 
 let values = Array.make num_domains 0
+let promise_list = ref []
 
 let calculate d st en ind =
   (* Printf.printf "st = %d en = %d\n" st en; *)
@@ -45,11 +46,17 @@ let loop_depths d =
   for i = 0 to  ((max_depth - d) / 2 + 1) - 1 do
     let d = d + i * 2 in
     let niter = 1 lsl (max_depth - d + min_depth) in
-    T.parallel_for pool ~chunk_size:(num_domains) ~start:0 ~finish:(num_domains - 1) ~body:(fun index -> calculate d ((index * niter) / num_domains) ((((index + 1) * niter) / num_domains) - 1) index);
+    for i = 0 to pred num_domains do
+      promise_list := (T.async pool (fun _ -> calculate d (i * niter / num_domains) (((i + 1) * niter / num_domains) - 1) i )) :: !promise_list
+    done;
 
-    let _sum = Array.fold_left (+) 0 values in
-    ()
-    (* Printf.printf "%i\t trees of depth %i\t check: %i\n" niter d sum *)
+    List.iter (fun pr -> T.await pool pr) (List.rev !promise_list);
+    
+    (* T.parallel_for pool ~chunk_size:(num_domains) ~start:0 ~finish:(num_domains - 1) ~body:(fun index -> calculate d ((index * niter) / num_domains) ((((index + 1) * niter) / num_domains) - 1) index); *)
+
+    let sum = Array.fold_left (+) 0 values in
+    (* () *)
+    Printf.printf "%i\t trees of depth %i\t check: %i\n" niter d sum
   done
 
 let () =

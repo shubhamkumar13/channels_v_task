@@ -38,3 +38,4 @@ root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r
 real	0m9.809s
 user	1m48.540s
 sys	0m13.810s
+
