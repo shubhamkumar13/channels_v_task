@@ -31,7 +31,7 @@ let () =
 let long_lived_tree = make max_depth
 
 let values = Array.make num_domains 0
-(* 
+
 let calculate d st en ind =
   (* Printf.printf "st = %d en = %d\n" st en; *)
   let c = ref 0 in
@@ -39,43 +39,15 @@ let calculate d st en ind =
   c := !c + check (make d)
   done;
   (* Printf.printf "ind = %d\n" ind; *)
-  values.(ind) <- !c *)
+  values.(ind) <- !c
 
 let loop_depths d =
   for i = 0 to  ((max_depth - d) / 2 + 1) - 1 do
     let d = d + i * 2 in
     let niter = 1 lsl (max_depth - d + min_depth) in
+    T.parallel_for pool ~chunk_size:(num_domains) ~start:0 ~finish:(num_domains - 1) ~body:(fun index -> calculate d ((index * niter) / num_domains) ((((index + 1) * niter) / num_domains) - 1) index);
 
-    (* ///////////////////////////////////////////////
-    	start_index, end_index and calculate are dependent
-    	on the number of domains spawned.
-
-    	but to pass all the information aside from `num_domains`
-    	is very tricky in parallel_for.
-
-    	since the chunking logic has to be 
-    	an iteration of num_domains (as far as I can see now)
-
-    	So I had to make calculate a local function.
-
-    	it doesn't effect usage of calculate 
-    	since only `loop_depths` function calls `calculate`
-    	so this made `d` `st` `en` all available as local variables
-
-    	this made it possible for me to use parallel_for 
-      ////////////////////////////////////////////////
-      *)
-    let calculate index =
-    	let c = ref 0 in
-    	let st = (index * niter) / num_domains in
-    	let en = (((index + 1) * niter) / num_domains) - 1 in
-    	for _ = st to en do
-    		c := !c + check (make d)
-    	done;
-    	values.(index) <- !c in
-    T.parallel_for pool ~chunk_size:(num_domains) ~start:0 ~finish:(num_domains - 1) ~body:(fun index -> calculate index);
-
-    let _ = Array.fold_left (+) 0 values in
+    let _sum = Array.fold_left (+) 0 values in
     ()
     (* Printf.printf "%i\t trees of depth %i\t check: %i\n" niter d sum *)
   done

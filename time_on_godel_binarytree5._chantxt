@@ -1,0 +1,40 @@
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/binarytree5_multicore.exe 1 23
+
+real	1m9.313s
+user	1m9.027s
+sys	0m0.284s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/binarytree5_multicore.exe 2 23
+
+real	0m42.267s
+user	1m19.382s
+sys	0m0.784s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/binarytree5_multicore.exe 4 23
+
+real	0m24.720s
+user	1m26.572s
+sys	0m1.317s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/binarytree5_multicore.exe 8 23
+
+real	0m13.488s
+user	1m11.149s
+sys	0m5.681s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/binarytree5_multicore.exe 12 23
+
+real	0m12.380s
+user	1m36.486s
+sys	0m5.387s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/binarytree5_multicore.exe 16 23
+
+real	0m11.182s
+user	1m39.856s
+sys	0m10.404s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/binarytree5_multicore.exe 20 23
+
+real	0m10.358s
+user	1m45.665s
+sys	0m12.027s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/binarytree5_multicore.exe 24 23
+
+real	0m9.809s
+user	1m48.540s
+sys	0m13.810s
