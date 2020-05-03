@@ -54,9 +54,9 @@ let loop_depths d =
     
     (* T.parallel_for pool ~chunk_size:(num_domains) ~start:0 ~finish:(num_domains - 1) ~body:(fun index -> calculate d ((index * niter) / num_domains) ((((index + 1) * niter) / num_domains) - 1) index); *)
 
-    let sum = Array.fold_left (+) 0 values in
-    (* () *)
-    Printf.printf "%i\t trees of depth %i\t check: %i\n" niter d sum
+    let _sum = Array.fold_left (+) 0 values in
+    ()
+    (* Printf.printf "%i\t trees of depth %i\t check: %i\n" niter d sum *)
   done
 
 let () =
