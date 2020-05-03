@@ -1,0 +1,81 @@
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/game_of_life_multicore.exe 1 256 
+
+real	0m45.187s
+user	0m45.175s
+sys	0m0.008s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/game_of_life_multicore.exe 2 256 
+
+real	0m23.105s
+user	0m45.709s
+sys	0m0.016s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/game_of_life_multicore.exe 4 256 
+
+real	0m11.663s
+user	0m45.597s
+sys	0m0.008s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/game_of_life_multicore.exe 8 256 
+
+real	0m5.952s
+user	0m45.757s
+sys	0m0.004s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/game_of_life_multicore.exe 12 256 
+
+real	0m4.078s
+user	0m45.875s
+sys	0m0.053s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/game_of_life_multicore.exe 16 256 
+
+real	0m3.102s
+user	0m46.344s
+sys	0m0.040s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/game_of_life_multicore.exe 20 256 
+
+real	0m2.534s
+user	0m46.532s
+sys	0m0.056s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/game_of_life_multicore.exe 24 256 
+
+real	0m2.165s
+user	0m46.705s
+sys	0m0.081s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/game_of_life_multicore_task.exe 1 256 
+
+real	0m44.370s
+user	0m44.357s
+sys	0m0.012s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/game_of_life_multicore_task.exe 2 256 
+
+real	0m22.286s
+user	0m44.434s
+sys	0m0.008s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/game_of_life_multicore_task.exe 4 256 
+
+real	0m11.201s
+user	0m44.426s
+sys	0m0.013s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/game_of_life_multicore_task.exe 8 256 
+
+real	0m5.668s
+user	0m44.434s
+sys	0m0.012s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/game_of_life_multicore_task.exe 12 256 
+
+real	0m3.976s
+user	0m44.627s
+sys	0m0.024s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/game_of_life_multicore_task.exe 16 256 
+
+real	0m2.927s
+user	0m44.585s
+sys	0m0.028s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/game_of_life_multicore_task.exe 20 256 
+
+real	0m2.513s
+user	0m45.114s
+sys	0m0.064s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/game_of_life_multicore_task.exe 24 256 
+
+real	0m2.670s
+user	0m45.663s
+sys	0m0.053s
+
