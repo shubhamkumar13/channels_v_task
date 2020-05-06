@@ -63,7 +63,7 @@ let run_iter job =
       List.rev acc 
       |> List.iter (fun pr -> T.await pool pr)
     end in
-  loop [] 0 (num_domains - 1);
+  loop [] 0 num_domains;
   job !sum (!sum + distribution.(num_domains - 1)) ()
 
 let aux_1 bodies dt =
