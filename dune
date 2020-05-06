@@ -43,6 +43,26 @@
 	(modules binarytree5_multicore_task)
 	(libraries domainslib))
 (executable
+	(name quicksort_multicore)
+	(modules quicksort_multicore)
+	(libraries domainslib))
+(executable
 	(name quicksort_multicore_task)
 	(modules quicksort_multicore_task)
+	(libraries domainslib))
+(executable
+	(name nbody_multicore_task)
+	(modules nbody_multicore_task)
+	(libraries domainslib))
+(executable
+	(name nbody_multicore)
+	(modules nbody_multicore)
+	(libraries domainslib))
+(executable
+	(name mandelbrot6_multicore)
+	(modules mandelbrot6_multicore)
+	(libraries domainslib))	
+(executable
+	(name mandelbrot6_multicore_task)
+	(modules mandelbrot6_multicore_task)
 	(libraries domainslib))
