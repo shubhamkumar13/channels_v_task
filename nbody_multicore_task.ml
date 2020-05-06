@@ -15,11 +15,6 @@ let pi = 3.141592653589793
 let solar_mass = 4. *. pi *. pi
 let days_per_year = 365.24
 
-(* type message = Do of (unit -> unit) | Quit
-type chan = {req: message C.t; resp: unit C.t}
-let channels =
-  Array.init (num_domains - 1) (fun _ -> {req= C.make 1; resp= C.make 1}) *)
-
 type planet = { mutable x : float;  mutable y : float;  mutable z : float;
                 mutable vx: float;  mutable vy: float;  mutable vz: float;
                 mass : float }
@@ -59,23 +54,17 @@ let distribution =
 
 let run_iter job =
   let sum = ref 0 in
-
-  T.parallel_for pool 
-  ~chunk_size:(n/num_domains) ~start:0 ~finish:(num_domains - 1)
-  ~body:(fun i -> 
-    let begin_ = !sum in
-    let end_ = begin_ + distribution.(i) in
-    sum := end_;
-    job begin_ end_ () 
-  )
-
-  (* Array.iteri (fun i c ->
-    let begin_ = !sum in
-    let end_ = begin_ + distribution.(i) in
-    sum := end_;
-    C.send c.req (Do (job begin_ end_));) channels; *)
-  (* job !sum (!sum + distribution.(num_domains - 1)); () *)
-  (* Array.iter (fun c -> C.recv c.resp) channels *)
+  let loop acc i en =
+    if i < en then begin
+      let begin_ = !sum in
+      let end_ = begin_ + distribution.(i) in
+      loop ((T.async pool (job begin_ end_)) :: acc) (i + 1) en
+    end else begin
+      List.rev acc 
+      |> List.iter (fun pr -> T.await pool pr)
+    end in
+  loop [] 0 (num_domains - 1);
+  job !sum (!sum + distribution.(num_domains - 1)) ()
 
 let aux_1 bodies dt =
   run_iter (fun s e () -> advance bodies dt s e);
@@ -112,11 +101,6 @@ let offset_momentum bodies =
   bodies.(0).vy <- -. !py /. solar_mass;
   bodies.(0).vz <- -. !pz /. solar_mass
 
-(* let rec worker c () =
-  match C.recv c.req with
-  | Do f -> f () ; C.send c.resp () ; worker c ()
-  | Quit -> () *)
-
 let bodies =
   Array.init num_bodies (fun _ ->
     { x = (Random.float  10.);
@@ -128,13 +112,10 @@ let bodies =
       mass=(Random.float 10.) *. solar_mass; })
 
 let () =
-  (* let domains = Array.map (fun c -> Domain.spawn (worker c)) channels in *)
-  (*Array.iteri (fun i x -> Printf.printf "distribution[%d] = %d\n" i x) distribution;*)
   offset_momentum bodies;
 
   Printf.printf "%.9f\n" (energy bodies);
   for _i = 1 to n do aux_1 bodies 0.01 done;
   Printf.printf "%.9f\n" (energy bodies);
 
-(*   Array.iter (fun c -> C.send c.req Quit) channels;
-  Array.iter Domain.join domains *)
+  T.teardown_pool pool
