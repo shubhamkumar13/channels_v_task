@@ -54,7 +54,7 @@ let distribution =
 
 let run_iter job =
   let sum = ref 0 in
-  let loop acc i en =
+  let rec loop acc i en =
     if i < en then begin
       let begin_ = !sum in
       let end_ = begin_ + distribution.(i) in
