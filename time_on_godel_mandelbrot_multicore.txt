@@ -1,0 +1,80 @@
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore.exe 1 16_000 1> /dev/null
+
+real	0m40.419s
+user	0m40.394s
+sys	0m0.024s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore.exe 2 16_000 1> /dev/null
+
+real	0m20.249s
+user	0m40.450s
+sys	0m0.032s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore.exe 4 16_000 1> /dev/null
+
+real	0m14.493s
+user	0m40.432s
+sys	0m0.008s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore.exe 8 16_000 1> /dev/null
+
+real	0m8.300s
+user	0m40.470s
+sys	0m0.016s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore.exe 12 16_000 1> /dev/null
+
+real	0m5.657s
+user	0m40.412s
+sys	0m0.036s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore.exe 16 16_000 1> /dev/null
+
+real	0m4.276s
+user	0m40.217s
+sys	0m0.036s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore.exe 20 16_000 1> /dev/null
+
+real	0m3.449s
+user	0m40.490s
+sys	0m0.024s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore.exe 24 16_000 1> /dev/null
+
+real	0m2.890s
+user	0m40.438s
+sys	0m0.020s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore_task.exe 1 16_000 1> /dev/null
+
+real	0m40.495s
+user	0m40.478s
+sys	0m0.016s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore_task.exe 2 16_000 1> /dev/null
+
+real	0m20.251s
+user	0m40.458s
+sys	0m0.024s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore_task.exe 4 16_000 1> /dev/null
+
+real	0m14.579s
+user	0m49.506s
+sys	0m0.004s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore_task.exe 8 16_000 1> /dev/null
+
+real	0m8.322s
+user	0m46.962s
+sys	0m0.028s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore_task.exe 12 16_000 1> /dev/null
+
+real	0m5.684s
+user	0m45.343s
+sys	0m0.020s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore_task.exe 16 16_000 1> /dev/null
+
+real	0m4.294s
+user	0m44.039s
+sys	0m0.024s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore_task.exe 20 16_000 1> /dev/null
+
+real	0m3.463s
+user	0m43.606s
+sys	0m0.032s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/mandelbrot6_multicore_task.exe 24 16_000 1> /dev/null
+
+real	0m2.904s
+user	0m43.174s
+sys	0m0.016s

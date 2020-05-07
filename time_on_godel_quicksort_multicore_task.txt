@@ -1,0 +1,40 @@
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/quicksort_multicore_task.exe 1 40_000_000
+
+real	0m36.324s
+user	0m36.143s
+sys	0m0.180s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/quicksort_multicore_task.exe 2 40_000_000
+
+real	0m21.242s
+user	0m36.204s
+sys	0m0.188s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/quicksort_multicore_task.exe 4 40_000_000
+
+real	0m18.361s
+user	0m51.433s
+sys	0m0.172s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/quicksort_multicore_task.exe 8 40_000_000
+
+real	0m15.708s
+user	0m54.109s
+sys	0m0.156s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/quicksort_multicore_task.exe 12 40_000_000
+
+real	0m11.412s
+user	1m1.652s
+sys	0m0.140s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/quicksort_multicore_task.exe 16 40_000_000
+
+real	0m11.517s
+user	1m5.714s
+sys	0m0.176s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/quicksort_multicore_task.exe 20 40_000_000
+
+real	0m11.419s
+user	1m8.710s
+sys	0m0.181s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/quicksort_multicore_task.exe 24 40_000_000
+
+real	0m11.509s
+user	1m13.236s
+sys	0m0.136s

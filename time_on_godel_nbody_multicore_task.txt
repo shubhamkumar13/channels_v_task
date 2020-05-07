@@ -1,0 +1,95 @@
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore_task.exe 4 512 2048 1> /dev/null
+
+real	0m13.134s
+user	0m52.374s
+sys	0m0.004s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore.exe 1 512 2048 1> /dev/null
+
+real	0m28.642s
+user	0m28.638s
+sys	0m0.004s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore.exe 2 512 2048 1> /dev/null
+
+real	0m26.023s
+user	0m51.988s
+sys	0m0.004s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore.exe 4 512 2048 1> /dev/null
+
+real	0m13.292s
+user	0m52.962s
+sys	0m0.024s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore.exe 8 512 2048 1> /dev/null
+
+real	0m7.005s
+user	0m55.538s
+sys	0m0.020s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore.exe 12 512 2048 1> /dev/null
+
+real	0m5.586s
+user	1m3.556s
+sys	0m0.052s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/nbody_multicore.exe 16 512 2048 1> /dev/null
+
+real	0m7.653s
+user	1m53.618s
+sys	0m0.068s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/nbody_multicore.exe 16 512 2048 1> /dev/null
+
+real	0m7.587s
+user	1m53.483s
+sys	0m0.040s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/nbody_multicore.exe 20 512 2048 1> /dev/null
+
+real	0m7.258s
+user	2m13.244s
+sys	0m0.084s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/nbody_multicore.exe 24 512 2048 1> /dev/null
+
+real	0m7.040s
+user	2m36.151s
+sys	0m0.080s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore_task.exe 1 512 2048 1> /dev/null
+
+real	0m29.361s
+user	0m29.356s
+sys	0m0.004s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore_task.exe 1 512 2048 1> /dev/null
+
+real	0m29.354s
+user	0m29.353s
+sys	0m0.000s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore_task.exe 4 512 2048 1> /dev/null
+
+real	0m13.138s
+user	0m52.366s
+sys	0m0.016s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore_task.exe 8 512 2048 1> /dev/null
+
+real	0m6.956s
+user	0m55.189s
+sys	0m0.024s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore_task.exe 2 512 2048 1> /dev/null
+
+real	0m25.677s
+user	0m51.300s
+sys	0m0.008s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13 chrt -r 1 _build/default/nbody_multicore_task.exe 12 512 2048 1> /dev/null
+
+real	0m5.644s
+user	1m4.620s
+sys	0m0.032s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/nbody_multicore_task.exe 16 512 2048 1> /dev/null
+
+real	0m8.294s
+user	2m2.037s
+sys	0m0.116s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/nbody_multicore_task.exe 20 512 2048 1> /dev/null
+
+real	0m7.701s
+user	2m20.231s
+sys	0m0.093s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/nbody_multicore_task.exe 24 512 2048 1> /dev/null
+
+real	0m7.479s
+user	2m43.465s
+sys	0m0.088s
