@@ -19,55 +19,29 @@ type planet = { mutable x : float;  mutable y : float;  mutable z : float;
                 mutable vx: float;  mutable vy: float;  mutable vz: float;
                 mass : float }
 
-let advance bodies dt s e =
-  let _n = Array.length bodies - 1 in
-  for i = s to (pred e) do
-    let b = bodies.(i) in
-    for j = 0 to Array.length bodies - 1 do
-      Domain.Sync.poll();
-      let b' = bodies.(j) in
-      if (i!=j) then
-      begin
-        let dx = b.x -. b'.x  and dy = b.y -. b'.y  and dz = b.z -. b'.z in
-        let dist2 = dx *. dx +. dy *. dy +. dz *. dz in
-        let mag = dt /. (dist2 *. sqrt(dist2)) in
-        b.vx <- b.vx -. dx *. b'.mass *. mag;
-        b.vy <- b.vy -. dy *. b'.mass *. mag;
-        b.vz <- b.vz -. dz *. b'.mass *. mag;
-
-        b'.vx <- b'.vx +. dx *. b.mass *. mag;
-        b'.vy <- b'.vy +. dy *. b.mass *. mag;
-        b'.vz <- b'.vz +. dz *. b.mass *. mag;
-      end
-    done
-  done
-
-let distribution =
-  let rec loop n d acc =
-    if d = 1 then n::acc
-    else
-      let w = n / d in
-      loop (n - w) (d - 1) (w::acc)
-  in
-  let l = loop num_bodies num_domains [] in
-  Array.of_list l
-
-let run_iter job =
-  let sum = ref 0 in
-  let rec loop acc i en =
-    if i < en then begin
-      let begin_ = !sum in
-      let end_ = begin_ + distribution.(i) in
-      loop ((T.async pool (job begin_ end_)) :: acc) (i + 1) en
-    end else begin
-      List.rev acc 
-      |> List.iter (fun pr -> T.await pool pr)
-    end in
-  loop [] 0 num_domains;
-  job !sum (!sum + distribution.(num_domains - 1)) ()
-
 let aux_1 bodies dt =
-  run_iter (fun s e () -> advance bodies dt s e);
+  T.parallel_for pool
+    ~chunk_size:(num_bodies/num_domains)
+    ~start:0
+    ~finish:(num_bodies - 1)
+    ~body:(fun i ->
+      let b = bodies.(i) in
+      for j = 0 to Array.length bodies - 1 do
+        Domain.Sync.poll();
+        let b' = bodies.(j) in
+        if (i!=j) then begin
+          let dx = b.x -. b'.x  and dy = b.y -. b'.y  and dz = b.z -. b'.z in
+          let dist2 = dx *. dx +. dy *. dy +. dz *. dz in
+          let mag = dt /. (dist2 *. sqrt(dist2)) in
+          b.vx <- b.vx -. dx *. b'.mass *. mag;
+          b.vy <- b.vy -. dy *. b'.mass *. mag;
+          b.vz <- b.vz -. dz *. b'.mass *. mag;
+
+          b'.vx <- b'.vx +. dx *. b.mass *. mag;
+          b'.vy <- b'.vy +. dy *. b.mass *. mag;
+          b'.vz <- b'.vz +. dz *. b.mass *. mag;
+        end
+      done);
   for i = 0 to num_bodies - 1 do
     Domain.Sync.poll();
     let b = bodies.(i) in
@@ -113,9 +87,7 @@ let bodies =
 
 let () =
   offset_momentum bodies;
-
   Printf.printf "%.9f\n" (energy bodies);
   for _i = 1 to n do aux_1 bodies 0.01 done;
   Printf.printf "%.9f\n" (energy bodies);
-
   T.teardown_pool pool
