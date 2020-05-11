@@ -1,0 +1,128 @@
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_chan.exe 1 2048
+
+real	0m34.362s
+user	0m34.294s
+sys	0m0.068s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_chan.exe 2 2048
+
+real	0m17.631s
+user	0m34.566s
+sys	0m0.064s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_chan.exe 4 2048
+
+real	0m9.231s
+user	0m34.876s
+sys	0m0.092s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_chan.exe 8 2048
+
+real	0m5.106s
+user	0m35.762s
+sys	0m0.164s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_chan.exe 12 2048
+
+real	0m3.970s
+user	0m38.868s
+sys	0m0.245s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_chan.exe 16 2048
+
+real	0m3.272s
+user	0m38.608s
+sys	0m0.269s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_chan.exe 20 2048
+
+real	0m3.181s
+user	0m42.930s
+sys	0m0.328s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_chan.exe 24 2048
+
+real	0m3.450s
+user	0m51.547s
+sys	0m0.515s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 1 2048
+
+real	0m34.324s
+user	0m34.235s
+sys	0m0.088s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 2 2048
+
+real	0m17.647s
+user	0m34.590s
+sys	0m0.100s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 4 2048
+
+real	0m9.230s
+user	0m34.790s
+sys	0m0.191s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 8 2048
+
+real	0m5.106s
+user	0m35.755s
+sys	0m0.151s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 12 2048
+
+real	0m3.981s
+user	0m39.034s
+sys	0m0.183s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 12 2048
+
+real	0m3.949s
+user	0m38.089s
+sys	0m0.207s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 16 2048
+
+real	0m3.415s
+user	0m40.370s
+sys	0m0.235s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 20 2048
+
+real	0m3.198s
+user	0m43.489s
+sys	0m0.415s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 24 2048
+
+real	0m3.432s
+user	0m51.752s
+sys	0m0.462s
+
+----------------modified-task-version-timings----------------------
+
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 1 2048
+
+real	0m34.111s
+user	0m34.039s
+sys	0m0.072s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 2 2048
+
+real	0m17.702s
+user	0m34.621s
+sys	0m0.124s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 4 2048
+
+real	0m9.424s
+user	0m35.163s
+sys	0m0.112s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 8 2048
+
+real	0m5.339s
+user	0m36.085s
+sys	0m0.165s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 12 2048
+
+real	0m4.220s
+user	0m39.313s
+sys	0m0.209s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 16 2048
+
+real	0m3.484s
+user	0m39.582s
+sys	0m0.318s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 20 2048
+
+real	0m3.183s
+user	0m41.959s
+sys	0m0.393s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/LU_decomposition_multicore_task.exe 24 2048
+
+real	0m3.126s
+user	0m47.146s
+sys	0m0.426s

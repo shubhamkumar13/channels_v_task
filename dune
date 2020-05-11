@@ -78,3 +78,11 @@
 	(name LU_decomposition_multicore_task)
 	(modules LU_decomposition_multicore_task)
 	(libraries domainslib))
+(executable
+	(name floyd_warshall_multicore_task)
+	(modules floyd_warshall_multicore_task)
+	(libraries domainslib))
+(executable
+	(name floyd_warshall_multicore_chan)
+	(modules floyd_warshall_multicore_chan)
+	(libraries domainslib))
