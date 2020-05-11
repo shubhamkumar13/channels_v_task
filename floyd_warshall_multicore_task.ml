@@ -67,5 +67,5 @@ let aux () =
 let ()=
   edit_diagonal adj;
   aux();
-  print_mat adj ;
+  (* print_mat adj ; *)
   T.teardown_pool pool
