@@ -67,10 +67,6 @@
 	(modules mandelbrot6_multicore_task)
 	(libraries domainslib))
 (executable
-	(name example)
-	(modules example)
-	(libraries domainslib))
-(executable
 	(name LU_decomposition_multicore_chan)
 	(modules LU_decomposition_multicore_chan)
 	(libraries domainslib))
