@@ -21,22 +21,21 @@ open SquareMatrix
 let chunk_size = 32
 let pool = T.setup_pool ~num_domains:(num_domains - 1)
 
-let lup pool (a0 : float array) =
+let lup a0 =
   let a = copy a0 in
   for k = 0 to (mat_size - 2) do
-  T.parallel_for pool 
-  ~chunk_size:chunk_size 
-  ~start:(k + 1) 
-  ~finish:(mat_size  -1)
-  ~body:(fun row ->
-    let factor = get a row k /. get a k k in
-    for col = k + 1 to mat_size-1 do
-      set a row col (get a row col -. factor *. (get a k col))
-      done;
-    set a row k factor )
-  done ;
+    T.parallel_for pool 
+    ~chunk_size:chunk_size 
+    ~start:(k + 1) 
+    ~finish:(mat_size  -1)
+    ~body:(fun row ->
+      let factor = get a row k /. get a k k in
+      for col = k + 1 to mat_size-1 do
+        set a row col (get a row col -. factor *. (get a k col))
+        done;
+      set a row k factor )
+  done;
   a
-
 let () =
   let a = create (fun _ _ -> (Random.float 100.0)+.1.0) in
   let lu = lup a in
