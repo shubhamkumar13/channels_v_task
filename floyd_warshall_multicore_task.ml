@@ -49,7 +49,7 @@ let aux () =
   for k = 0 to (pred n) do
     (* run_iter (fun s e () -> f_w s e k) *)
     T.parallel_for pool
-    ~chunk_size:16
+    ~chunk_size:32
     ~start:0
     ~finish:(n - 1)
     ~body:(fun i ->
