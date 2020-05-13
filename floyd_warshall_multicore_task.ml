@@ -47,7 +47,6 @@ let edit_diagonal mat =
 
 let aux () =
   for k = 0 to (pred n) do
-    (* run_iter (fun s e () -> f_w s e k) *)
     T.parallel_for pool
     ~chunk_size:16
     ~start:0

@@ -1,0 +1,40 @@
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/floyd_warshall_multicore_chan.exe 1 1024
+
+real	0m44.546s
+user	0m44.525s
+sys	0m0.020s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/floyd_warshall_multicore_chan.exe 2 1024
+
+real	0m22.640s
+user	0m44.727s
+sys	0m0.068s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/floyd_warshall_multicore_chan.exe 4 1024
+
+real	0m11.463s
+user	0m44.745s
+sys	0m0.108s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/floyd_warshall_multicore_chan.exe 8 1024
+
+real	0m5.861s
+user	0m44.033s
+sys	0m0.168s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/floyd_warshall_multicore_chan.exe 12 1024
+
+real	0m3.939s
+user	0m42.590s
+sys	0m0.279s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/floyd_warshall_multicore_chan.exe 16 1024
+
+real	0m3.017s
+user	0m40.873s
+sys	0m0.256s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/floyd_warshall_multicore_chan.exe 20 1024
+
+real	0m2.396s
+user	0m39.009s
+sys	0m0.332s
+root@godel:~/shubham/channels_v_task# time taskset --cpu-list 2-13,16-27 chrt -r 1 _build/default/floyd_warshall_multicore_chan.exe 24 1024
+
+real	0m2.034s
+user	0m38.030s
+sys	0m0.378s
