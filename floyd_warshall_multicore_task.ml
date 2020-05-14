@@ -33,11 +33,10 @@ let my_formula () =
   |0 ->None
   |_-> Some r
 
+let adj = Array.init n (fun _ -> Array.init n (fun _ -> my_formula ()))
+
 let edit_diagonal mat =
-  for i = 0 to (pred @@ Array.length mat) do
-    mat.(i).(i) <- Some 0
-  done;
-  mat
+  Array.iteri (fun i _ -> mat.(i).(i) <- Some 0) mat
 
 (* let adj = [|
     [| Some 0; Some 8;None; Some 1 |];
@@ -46,7 +45,7 @@ let edit_diagonal mat =
     [| None; Some 2; Some 9;Some 0 |];
   |] *)
 
-let aux adj =
+let aux () =
   for k = 0 to (pred n) do
     T.parallel_for pool
     ~chunk_size:16
@@ -56,20 +55,15 @@ let aux adj =
       if adj.(i).(k) <> None then
         for j = 0 to n-1 do
           Domain.Sync.poll();
-          let cond = 
-            (adj.(k).(j) <> None)
-         && ((adj.(i).(j) = None)
-         || (sum adj.(i).(k) adj.(k).(j)) < adj.(i).(j)) in
-          match cond with 
-          | true -> adj.(i).(j) <- (sum adj.(i).(k)  adj.(k).(j))
-          | false -> ()
+            if adj.(k).(j) <> None 
+              && (adj.(i).(j) = None 
+              || (sum adj.(i).(k) adj.(k).(j)) <  adj.(i).(j)) 
+            then adj.(i).(j) <- (sum adj.(i).(k)  adj.(k).(j))
         done);
-  done;
-  adj
+  done
 
-let () =
-  let adj = Array.init n (fun _ -> Array.init n (fun _ -> my_formula ())) in
-  edit_diagonal adj |> fun adj ->
-  aux adj |> fun _ ->
-  (* print_mat adj; *)
+let ()=
+  edit_diagonal adj;
+  aux();
+  (* print_mat adj ; *)
   T.teardown_pool pool
