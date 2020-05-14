@@ -71,5 +71,5 @@ let () =
   let adj = Array.init n (fun _ -> Array.init n (fun _ -> my_formula ())) in
   edit_diagonal adj |> fun adj ->
   aux adj |> fun _ ->
-  print_mat adj;
+  (* print_mat adj; *)
   T.teardown_pool pool
