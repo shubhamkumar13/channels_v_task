@@ -33,10 +33,13 @@ let my_formula () =
   |0 ->None
   |_-> Some r
 
-let adj = Array.init n (fun _ -> Array.init n (fun _ -> my_formula ()))
-
 let edit_diagonal mat =
-  Array.iteri (fun i _ -> mat.(i).(i) <- Some 0) mat
+  T.parallel_for pool
+    ~chunk_size:16
+    ~start:0
+    ~finish:((Array.length mat) - 1)
+    ~body:(fun i -> mat.(i).(i) <- Some 0);
+  mat
 
 (* let adj = [|
     [| Some 0; Some 8;None; Some 1 |];
@@ -45,7 +48,7 @@ let edit_diagonal mat =
     [| None; Some 2; Some 9;Some 0 |];
   |] *)
 
-let aux () =
+let aux adj =
   for k = 0 to (pred n) do
     T.parallel_for pool
     ~chunk_size:16
@@ -61,10 +64,12 @@ let aux () =
             || (sum adj.(i).(k) adj.(k).(j)) <  adj.(i).(j)) 
             then adj.(i).(j) <- (sum adj.(i).(k)  adj.(k).(j))
         done);
-  done
+  done;
+  adj
 
-let ()=
-  edit_diagonal adj;
-  aux();
+let () =
+  let adj = Array.init n (fun _ -> Array.init n (fun _ -> my_formula ())) in
+  edit_diagonal adj |> fun adj ->
+  aux adj |> fun _ ->
   (* print_mat adj ; *)
   T.teardown_pool pool
