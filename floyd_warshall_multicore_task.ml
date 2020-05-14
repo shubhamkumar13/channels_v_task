@@ -51,7 +51,7 @@ let edit_diagonal mat =
 let aux adj =
   for k = 0 to (pred n) do
     T.parallel_for pool
-    ~chunk_size:4
+    ~chunk_size:8
     ~start:0
     ~finish:(n - 1)
     ~body:(fun i ->
