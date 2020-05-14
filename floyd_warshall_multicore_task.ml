@@ -58,11 +58,13 @@ let aux adj =
       if adj.(i).(k) <> None then
         for j = 0 to n-1 do
           Domain.Sync.poll();
-            if adj.(k).(j) 
-            <> None 
-            && (adj.(i).(j) = None 
-            || (sum adj.(i).(k) adj.(k).(j)) <  adj.(i).(j)) 
-            then adj.(i).(j) <- (sum adj.(i).(k)  adj.(k).(j))
+            let temp = 
+              ((sum adj.(i).(k) adj.(k).(j)) <  adj.(i).(j)) in
+            match adj.(k).(j) <> None || temp with
+            | true -> (match adj.(i).(j) = None || temp with
+                      | true  -> adj.(i).(j) <- (sum adj.(i).(k)  adj.(k).(j))
+                      | false -> ());
+            | false -> ()
         done);
   done;
   adj
