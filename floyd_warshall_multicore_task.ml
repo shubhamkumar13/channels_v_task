@@ -34,11 +34,9 @@ let my_formula () =
   |_-> Some r
 
 let edit_diagonal mat =
-  T.parallel_for pool
-    ~chunk_size:16
-    ~start:0
-    ~finish:((Array.length mat) - 1)
-    ~body:(fun i -> mat.(i).(i) <- Some 0);
+  for i = 0 to (pred @@ Array.length mat) do
+    mat.(i).(i) <- Some 0
+  done;
   mat
 
 (* let adj = [|
@@ -58,11 +56,9 @@ let aux adj =
       if adj.(i).(k) <> None then
         for j = 0 to n-1 do
           Domain.Sync.poll();
-            let temp = 
-              ((sum adj.(i).(k) adj.(k).(j)) <  adj.(i).(j)) in
-            match adj.(k).(j) <> None || temp with
-            | true -> (match adj.(i).(j) = None || temp with
-                      | true  -> adj.(i).(j) <- (sum adj.(i).(k)  adj.(k).(j))
+            match adj.(k).(j) <> None with
+            | true -> (match (adj.(i).(j) = None || (sum adj.(i).(k) adj.(k).(j)) < adj.(i).(j)) with
+                      | true -> adj.(i).(j) <- (sum adj.(i).(k)  adj.(k).(j))
                       | false -> ());
             | false -> ()
         done);
@@ -73,5 +69,5 @@ let () =
   let adj = Array.init n (fun _ -> Array.init n (fun _ -> my_formula ())) in
   edit_diagonal adj |> fun adj ->
   aux adj |> fun _ ->
-  (* print_mat adj ; *)
+  (* print_mat adj; *)
   T.teardown_pool pool
