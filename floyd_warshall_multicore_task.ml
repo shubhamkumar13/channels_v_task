@@ -56,11 +56,13 @@ let aux adj =
       if adj.(i).(k) <> None then
         for j = 0 to n-1 do
           Domain.Sync.poll();
-            match adj.(k).(j) <> None with
-            | true -> (match (adj.(i).(j) = None || (sum adj.(i).(k) adj.(k).(j)) < adj.(i).(j)) with
-                      | true -> adj.(i).(j) <- (sum adj.(i).(k)  adj.(k).(j))
-                      | false -> ());
-            | false -> ()
+          let cond = 
+            (adj.(k).(j) <> None)
+         && ((adj.(i).(j) = None)
+         || (sum adj.(i).(k) adj.(k).(j)) < adj.(i).(j)) in
+          match cond with 
+          | true -> adj.(i).(j) <- (sum adj.(i).(k)  adj.(k).(j))
+          | false -> ()
         done);
   done;
   adj
@@ -69,5 +71,5 @@ let () =
   let adj = Array.init n (fun _ -> Array.init n (fun _ -> my_formula ())) in
   edit_diagonal adj |> fun adj ->
   aux adj |> fun _ ->
-  (* print_mat adj; *)
+  print_mat adj;
   T.teardown_pool pool
