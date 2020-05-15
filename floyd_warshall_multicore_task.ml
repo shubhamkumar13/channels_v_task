@@ -2,6 +2,11 @@ let num_domains = try int_of_string Sys.argv.(1) with _ -> 1
 let n = try int_of_string Sys.argv.(2) with _ -> 4
 (* n is size of matrix  *)
 
+let sum x y =
+  match x , y with
+  | Some x ,Some y -> Some (x+y)
+  | _ , _-> None
+
 let print_inf x =
   match  x with
   | Some x -> print_int x
@@ -38,11 +43,6 @@ let edit_diagonal mat =
   |] *)
 
 let aux pool adj =
-  let sum x y =
-    match x , y with
-    | Some x ,Some y -> Some (x+y)
-    | _ , _-> None
-  in
   for k = 0 to (pred n) do
     T.parallel_for pool
     ~chunk_size:16
