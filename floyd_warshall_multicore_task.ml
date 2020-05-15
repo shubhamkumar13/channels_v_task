@@ -24,7 +24,6 @@ let columns = Array.length adjacency.(0) in
    done
 
 module T = Domainslib.Task
-let pool = T.setup_pool ~num_domains:(num_domains - 1)
 
 let my_formula () =
   let r = Random.int 100 in
@@ -32,8 +31,6 @@ let my_formula () =
   match r1 with
   |0 ->None
   |_-> Some r
-
-let adj = Array.init n (fun _ -> Array.init n (fun _ -> my_formula ()))
 
 let edit_diagonal mat =
   Array.iteri (fun i _ -> mat.(i).(i) <- Some 0) mat
@@ -45,7 +42,7 @@ let edit_diagonal mat =
     [| None; Some 2; Some 9;Some 0 |];
   |] *)
 
-let aux () =
+let aux pool adj =
   for k = 0 to (pred n) do
     T.parallel_for pool
     ~chunk_size:16
@@ -60,10 +57,13 @@ let aux () =
               || (sum adj.(i).(k) adj.(k).(j)) <  adj.(i).(j)) 
             then adj.(i).(j) <- (sum adj.(i).(k)  adj.(k).(j))
         done);
-  done
+  done;
+  adj
 
-let ()=
+let () =
+  let pool = T.setup_pool ~num_domains:(num_domains - 1) in
+  let adj = Array.init n (fun _ -> Array.init n (fun _ -> my_formula ())) in
   edit_diagonal adj;
-  aux();
+  aux pool adj |> fun _ ->
   (* print_mat adj ; *)
   T.teardown_pool pool
